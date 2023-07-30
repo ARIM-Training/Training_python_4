@@ -7,9 +7,9 @@ from rdkit.Chem import BRICS
 from rdkit.Chem import Draw
 import pandas as pd
 import numpy as np
+
 from time import time
 from multiprocessing import Pool
-
 
 def stopwatch(t):
     """経過時間を測る関数"""
@@ -38,7 +38,9 @@ if __name__=='__main__':
         print(len(fragments))
 
     NUM_ITER=10000
+    
     from random import seed
+
     #--- starts parallel BRICS
     start = time()
     seed(20200315)

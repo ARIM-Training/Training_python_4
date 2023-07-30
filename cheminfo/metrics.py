@@ -13,7 +13,6 @@ def t2_score(data, model):
 def q_value(data, model):
     "Q値の計算モジュール"
     assert type(data)==pd.DataFrame or type(data)==np.ndarray, "input must be pandas.DataFrame or np.array"
-    x_reproduced_ = model.transform(data) \
-              @ model.best_estimator_.x_loadings_.T \
-              * model.best_estimator_.x_std_ + model.best_estimator_.x_mean_
+    x_reproduced_ = model.transform(data) @ model.best_estimator_.x_loadings_.T 
+    #* model.best_estimator_.x_std_ + model.best_estimator_.x_mean_
     return ((data - x_reproduced_)**2.).sum(axis=1)

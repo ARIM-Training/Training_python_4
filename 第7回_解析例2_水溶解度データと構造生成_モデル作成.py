@@ -32,7 +32,6 @@ def count_lines(filename):
             c+=1
     return c
 
-
 def main():
     """メイン関数。入力を受け取り、並列処理を実行。"""
     # assert len(argv)>2, "SYNTAX: python src/10.3-screening.py MODEL_FILE.joblib SMILES.smi"

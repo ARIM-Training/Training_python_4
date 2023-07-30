@@ -10,11 +10,14 @@ def processor(argv):
     """予測値とSMILESを文字列で返す関数。multiprocessing.Pool.imap用。"""
     smiles, model = argv
     smi = smiles.strip()
+
     mol = MolFromSmiles(smi)
     mol.UpdatePropertyCache(strict=True)
     rdcalc = RDKitDescriptor()
     xnew = np.array(rdcalc.transform([mol]))
-    # print(xnew,type(xnew))
+    
+    print(type(xnew))
+    
     ypred = model.predict(xnew)
     t2 = t2_score(xnew, model)
     q = q_value(xnew, model)
@@ -36,26 +39,20 @@ def main():
     modelfile = "./models/9.3_rdkit_pls.joblib"
     smilesfile = "./results/mol_quad.smi"
 
-    print ("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
     model = jl_load(modelfile)
-
-    print ("BBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     n_counts = count_lines(smilesfile)
 
-    print (n_counts)
     cs = 1000
 
+    model_sampler = (model for _ in range(n_counts))
+    outfile = open(smilesfile.replace('.smi', '.out'), 'w')
 
-    #model_sampler = (model for _ in range(n_counts))
-    #outfile = open(smilesfile.replace('.smi', '.out'), 'w')
-
-    #with open(smilesfile, 'r') as f:
-    #    with Pool(cpu_count()) as pool:
-    #        "並列処理"
-    #        for ret in pool.imap(processor, zip(f, model_sampler), chunksize=cs):
-    #            outfile.write(ret+'\n')
-    #outfile.close()# 開いたファイルオブジェクトは必ず閉じる。
+    with open(smilesfile, 'r') as f:
+        with Pool(cpu_count()) as pool:
+            "並列処理"
+            for ret in pool.imap(processor, zip(f, model_sampler), chunksize=cs):
+                outfile.write(ret+'\n')
+    outfile.close()# 開いたファイルオブジェクトは必ず閉じる。
 
 if __name__ == '__main__':
     main()

@@ -37,8 +37,7 @@ if __name__=='__main__':
     else:
         print(len(fragments))
 
-    NUM_ITER=1000
-    
+    NUM_ITER=10000
     from random import seed
     #--- starts parallel BRICS
     start = time()

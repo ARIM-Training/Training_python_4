@@ -20,7 +20,7 @@ Irisデータセットを使用して機械学習を学ぶ目的は、以下の�
 Google Colabでステップ・バイ・ステップで動作を確認しながら進めます．下記のボタンを押して進んでください．
 
 <div align="center">
-  <a href="https://colab.research.google.com/github/ARIM-Training/Training_python_4/blob/main/第1回_RDkit_操作.ipynb">
+  <a href="https://colab.research.google.com/github/ARIM-Training/Training_python_4/blob/main/第1回_RDkit.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 </div>

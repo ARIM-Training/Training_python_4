@@ -4,7 +4,7 @@
 **目　標**：　本講座の目標
 
 
-![Alt text](image.png)
+![Alt text](./img/main-image.png)
 
 
 <hr>

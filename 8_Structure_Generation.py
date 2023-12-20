@@ -25,7 +25,7 @@ def sample_molecule(mol):
 
 
 if __name__=='__main__':
-    df=pd.read_csv('./data/delaney-solubility/delaney-processed.csv',
+    df=pd.read_csv('./data/dataset/delaney-processed.csv',
                   index_col=0)
     TARGET=['measured log solubility in mols per litre']
     df['mol'] = df['smiles'].apply(Chem.MolFromSmiles)
